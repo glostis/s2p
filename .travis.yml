@@ -5,8 +5,6 @@ python: 3.7
 sudo: required
 fast_finish: true
 
-if: tag IS blank
-
 addons:
   apt:
     sources:
@@ -59,3 +57,17 @@ jobs:
       # (see https://github.com/Homebrew/homebrew-bundle/issues/540#issuecomment-518301382)
       osx_image: xcode10.2
       language: generic
+
+    - stage: deploy
+      if: tag IS present AND repo = glostis/s2p
+      install: skip
+      script: skip
+      deploy:
+        - provider: pypi
+          user: glostis
+          password:
+            secure: "bv4+0sydGSp1ghppmOExXa+X2u3KymOjCF95OxN1g+h7yASUdsZlhHTjiBIicIfohG9PxKmFloSWgQCC17LFyP919ErFOqGSRTqekqelT6yPch4xuDZMiF5F4zFO51omGZ1rMTIFgWFvQgfBVF7mnXopz6FbsiC5kXoRMwLegYnrKgd+NF/xXPz/y/GKj/9HihALbmHZ47R+b4cX7zk8/2NezLOI27t2jMAMxF+90+XlvwuphHdKFgE2fkJ/0veeADlOXkacQQ19llQlV2j7dNPYEQo+Rbq/NAPYY5D9rWQDpUlhuQ7z0dmuYAadE3Oo6VemEH93qI/EPk53xpxJAu1FKjtOirqmycBPA7rTh5c+Aahfo/Nbsavx+3OBSNEiSpMdiJghHW6A06Ak9Eid1Bx4hwhpJ22EqZ6XfB+xwtZlr/K9k7ea1+A1bcoMOzFMKSYHQe3GgtMdXl+ol8GmwFqWBLaIULVu9rE31eLP/DQigsj7zx5Mrfc1ngzp3le9HGwaL4E2r7vvSeyuaEftePuOgRaXddAPk9riENYA5UBeqSrJZHJOPDxZZ4AZpB+DHeWBLSskNgSvLudUxLddyIBpqtcNAP1ACgmlEYsiNv6wdZkAYFOYfilQZ8ROWtGPPPRir0SBGs0zPnzZutX2Z1qK7xDGeJZaODc+nIh2+gY="
+          server: https://test.pypi.org/legacy/
+          distributions: sdist
+          on:
+            tags: true
