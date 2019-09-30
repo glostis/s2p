@@ -53,8 +53,8 @@ requirements = ['numpy',
                 'rpcm>=1.3',
                 'requests']
 
-setup(name="s2p",
-      version="1.0b18",
+setup(name="test-glostis-s2p",
+      version="0.0.1",
       description="Satellite Stereo Pipeline.",
       long_description=readme(),
       long_description_content_type='text/markdown',
